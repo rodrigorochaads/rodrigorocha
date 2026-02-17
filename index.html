@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Rodrigo Rocha | Sistema previsível de pacientes particulares</title>
-  <meta name="description" content="Sistema previsível de aquisição de pacientes particulares para clínicas premium/high ticket. Exclusividade por praça. Métricas claras: CAC e custo por agendamento." />
+  <meta name="description" content="Aquisição previsível para clínicas premium/high ticket. Exclusividade por praça. Métricas claras: CAC e custo por agendamento." />
   <meta name="robots" content="index,follow" />
   <meta name="theme-color" content="#0A192F" />
 
@@ -14,7 +14,7 @@
   <meta property="og:description" content="Aquisição previsível para clínicas premium. Exclusividade por praça. Métricas claras." />
   <meta property="og:type" content="website" />
 
-  <!-- Fonts (Google Fonts) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
@@ -25,7 +25,7 @@
     "@context":"https://schema.org",
     "@type":"LocalBusiness",
     "name":"Rodrigo Rocha • Gestor Estratégico de Aquisição",
-    "description":"Sistema previsível de aquisição de pacientes particulares para clínicas premium/high ticket, com exclusividade por praça e métricas claras (CAC e custo por agendamento).",
+    "description":"Aquisição previsível para clínicas premium/high ticket, com exclusividade por praça e métricas claras (CAC e custo por agendamento).",
     "areaServed":"SC, Brasil",
     "address":{"@type":"PostalAddress","addressLocality":"Criciúma","addressRegion":"SC","addressCountry":"BR"},
     "telephone":"+55 48 99929-1215",
@@ -445,26 +445,13 @@
       flex: 0 0 auto;
     }
 
-    /* Method timeline */
-    .timeline{
+    /* Método: cards em grid (mais bonito) */
+    .stepsGrid{
       margin-top: 22px;
-      position: relative;
-      display:grid;
-      gap: 14px;
+      display: grid;
+      gap: 12px;
     }
-    .timeline::before{
-      content:"";
-      position:absolute;
-      left: 18px;
-      top: 6px;
-      bottom: 6px;
-      width: 2px;
-      background: rgba(184,134,11,.34);
-      border-radius: 999px;
-    }
-    .step{
-      position: relative;
-      padding-left: 48px;
+    .stepCard{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.10);
       border-radius: var(--radius);
@@ -472,45 +459,36 @@
       padding: 16px;
       min-width: 0;
     }
-    .step .badge{
-      position:absolute;
-      left: 6px;
-      top: 16px;
+    .stepTop{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .stepNum{
       width: 36px;
       height: 36px;
       border-radius: 14px;
-      display:grid;
-      place-items:center;
+      display: grid;
+      place-items: center;
       background: rgba(184,134,11,.16);
       border: 1px solid rgba(184,134,11,.30);
       color: var(--gold);
       font-family: Montserrat, sans-serif;
       font-weight: 900;
-      font-size: 18px;
+      flex: 0 0 auto;
     }
-    .step h3{ color:#fff; margin: 0 0 6px 0; }
-    .step p{ color: rgba(255,255,255,.80); }
-    .step .miniChecks{
+    .stepCard h3{ margin: 0; color: #fff; }
+    .stepCard p{ color: rgba(255,255,255,.80); }
+    .stepChecks{
       margin-top: 10px;
-      display:flex;
-      flex-direction: column;
+      display: grid;
       gap: 6px;
       color: rgba(255,255,255,.78);
       font-size: 14px;
     }
-    .step .miniChecks span{
-      display:flex;
-      gap: 8px;
-      align-items:flex-start;
-      min-width: 0;
-    }
-    .step .miniChecks i{
-      font-style: normal;
-      color: var(--blue);
-      font-weight: 900;
-      margin-top: 1px;
-      flex: 0 0 auto;
-    }
+    .stepChecks span{ display:flex; gap:8px; align-items:flex-start; }
+    .stepChecks i{ font-style: normal; color: var(--blue); font-weight: 900; margin-top: 1px; }
 
     /* Work with me */
     .workGrid{
@@ -637,7 +615,22 @@
       border: 1px solid rgba(0,0,0,.08);
       color: rgba(0,0,0,.75);
     }
-    .logoPill svg{ width: 22px; height: 22px; fill: rgba(0,0,0,.82); }
+
+    /* Certificações: “bolinhas” bonitas no lugar do SVG preto */
+    .platDot{
+      width: 22px;
+      height: 22px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-family: Montserrat, sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      color: #fff;
+      flex: 0 0 auto;
+    }
+    .platDot.meta{ background: linear-gradient(135deg, #00A3FF, #7C3AED); }
+    .platDot.google{ background: linear-gradient(135deg, #34A853, #4285F4); }
 
     /* FAQ */
     .faq{
@@ -787,7 +780,6 @@
       border: 1px solid rgba(255,255,255,.10);
       color: rgba(255,255,255,.80);
     }
-    .badge svg{ width: 22px; height: 22px; fill: rgba(255,255,255,.88); }
 
     /* Scroll reveal */
     .reveal{ opacity: 1; transform: none; }
@@ -821,6 +813,7 @@
       .diffGrid{ grid-template-columns: repeat(3, 1fr); }
       .footGrid{ grid-template-columns: 1.2fr .8fr; align-items: end; }
       .lastBox{ grid-template-columns: 1fr auto; }
+      .stepsGrid{ grid-template-columns: repeat(3, 1fr); }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -833,9 +826,7 @@
 </head>
 
 <body>
-  <!-- CONFIG -->
-  <!-- WhatsApp curto (sem texto gigante) -->
-  <!-- Use sempre este mesmo link -->
+  <!-- WhatsApp curto -->
   <!-- https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade. -->
 
   <!-- HERO -->
@@ -850,8 +841,8 @@
         <a class="btn btn-outline topCta"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer"
-           aria-label="Verificar exclusividade na minha cidade">
-          Verificar exclusividade na minha cidade →
+           aria-label="Verificar disponibilidade na minha cidade">
+          Verificar disponibilidade na minha cidade →
         </a>
       </div>
 
@@ -859,15 +850,15 @@
         <div class="heroText reveal">
           <div class="kicker">
             <span class="dot" aria-hidden="true"></span>
-            <span>SISTEMA PREVISÍVEL • PACIENTES PARTICULARES • EXCLUSIVIDADE POR PRAÇA</span>
+            <span>PACIENTES PARTICULARES • CLÍNICAS PREMIUM • EXCLUSIVIDADE POR PRAÇA</span>
           </div>
 
-          <h1>Pare de perder pacientes particulares de Implante Capilar, Lipo HD e Facetas para clínicas menores com processo melhor</h1>
+          <h1>Pare de perder pacientes particulares para clínicas menores com marketing e recepção mais rápidos</h1>
 
           <div class="spacer12"></div>
           <p class="lead subtle">
-            Eu opero aquisição de pacientes particulares com foco em 2 coisas: (1) campanhas para capturar demanda e (2) protocolo de recepção para converter rápido no WhatsApp.
-            Sem prometer resultado — com processo, mensuração e otimização semanal.
+            Eu opero aquisição de pacientes particulares para clínicas premium. Entrego 2 coisas: (1) campanhas para capturar demanda com intenção real e (2) protocolo de recepção para converter rápido no WhatsApp.
+            Sem promessas vazias — com processo, mensuração e otimização semanal.
           </p>
 
           <div class="spacer18"></div>
@@ -881,7 +872,7 @@
             <a class="btn btn-gold"
                href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
                target="_blank" rel="noopener noreferrer">
-              Verificar exclusividade na minha cidade →
+              Verificar disponibilidade na minha cidade →
             </a>
 
             <div class="metaRow micro">
@@ -906,14 +897,14 @@
           </ul>
 
           <div class="goldAlert" role="note">
-            ⚠️ <strong>Exclusividade por praça:</strong> atendo apenas <strong>um parceiro por microrregião/cidade</strong> para o procedimento principal.
+            <strong>Exclusividade por praça:</strong> atendo apenas <strong>um parceiro por microrregião/cidade</strong> para o procedimento principal.
           </div>
 
           <div class="spacer12"></div>
           <a class="btn btn-gold"
              href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
              target="_blank" rel="noopener noreferrer">
-            Verificar exclusividade agora →
+            Verificar disponibilidade agora →
           </a>
         </aside>
       </div>
@@ -963,13 +954,13 @@
         </a>
         <div class="spacer10"></div>
         <p class="micro" style="color: rgba(0,0,0,.60); margin:0;">
-          Eu faço 3 perguntas, verifico a praça e digo se faz sentido.
+          Eu faço 3 perguntas na conversa e digo se faz sentido.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- O QUE VOCÊ RECEBE EM 14 DIAS -->
+  <!-- 14 DIAS -->
   <section class="bg-white" id="14-dias">
     <div class="container reveal">
       <div class="center">
@@ -991,7 +982,7 @@
         </article>
         <article class="card hoverlift">
           <div class="objTitle">Funil</div>
-          <p style="color: rgba(0,0,0,.70);">Mapa de campanhas (Meta + Google + Maps) por procedimento âncora e objetivo.</p>
+          <p style="color: rgba(0,0,0,.70);">Mapa de campanhas (Meta + Google + Maps) por serviço âncora e objetivo.</p>
         </article>
         <article class="card hoverlift">
           <div class="objTitle">Criativos</div>
@@ -1020,7 +1011,7 @@
         <a class="btn btn-gold"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer">
-          Verificar exclusividade na minha cidade →
+          Verificar disponibilidade na minha cidade →
         </a>
         <div class="spacer10"></div>
         <p class="micro" style="color: rgba(0,0,0,.60); margin:0;">Se sua praça já tiver parceiro ativo, eu não abro exceção.</p>
@@ -1040,26 +1031,26 @@
 
       <div class="grid6" aria-label="Nichos atendidos" style="margin-top:22px;">
         <div class="card soft hoverlift niche">
-          <div class="icon">💇</div>
+          <div class="icon">🏥</div>
           <div>
-            <h3>Implante Capilar</h3>
-            <p>Intenção ativa + qualificação para alto ticket.</p>
+            <h3>Clínicas premium (alto ticket)</h3>
+            <p>Processo para previsibilidade e margem.</p>
           </div>
         </div>
 
         <div class="card soft hoverlift niche">
-          <div class="icon">🩺</div>
+          <div class="icon">✨</div>
           <div>
-            <h3>Cirurgia Plástica (Lipo HD)</h3>
-            <p>Processo para não perder timing no WhatsApp.</p>
+            <h3>Estética premium</h3>
+            <p>Triagem + agenda com protocolo (sem “curioso”).</p>
           </div>
         </div>
 
         <div class="card soft hoverlift niche">
           <div class="icon">🦷</div>
           <div>
-            <h3>Odonto Estética (Facetas)</h3>
-            <p>Concorrência alta: ganha quem tem rotina e velocidade.</p>
+            <h3>Odonto estética</h3>
+            <p>Concorrência alta: vence quem tem rotina e velocidade.</p>
           </div>
         </div>
 
@@ -1072,18 +1063,18 @@
         </div>
 
         <div class="card soft hoverlift niche">
-          <div class="icon">🧬</div>
+          <div class="icon">🩺</div>
           <div>
-            <h3>Biomedicina Estética</h3>
-            <p>Protocolo para aumentar taxa de agendamento.</p>
+            <h3>Cirurgia / plástica</h3>
+            <p>Funil de decisão mais longo pede follow-up.</p>
           </div>
         </div>
 
         <div class="card soft hoverlift niche">
-          <div class="icon">💉</div>
+          <div class="icon">📍</div>
           <div>
-            <h3>Harmonização Facial</h3>
-            <p>Posicionamento premium e triagem.</p>
+            <h3>Serviços com demanda local</h3>
+            <p>Google/Maps + recepção rápida para ganhar a praça.</p>
           </div>
         </div>
       </div>
@@ -1093,7 +1084,7 @@
         <a class="btn btn-gold"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer">
-          Verificar exclusividade na minha cidade →
+          Verificar disponibilidade na minha cidade →
         </a>
       </div>
     </div>
@@ -1162,37 +1153,43 @@
         </p>
       </div>
 
-      <div class="timeline" aria-label="Timeline do Método">
-        <div class="step hoverlift">
-          <div class="badge">1</div>
-          <h3>ETAPA 1 — INTENÇÃO</h3>
-          <p>Campanhas para capturar demanda com intenção real e complementar com Meta para autoridade.</p>
-          <div class="miniChecks" aria-label="Checks da etapa 1">
-            <span><i>✓</i>Intenção ativa.</span>
-            <span><i>✓</i>Foco por procedimento.</span>
+      <div class="stepsGrid" aria-label="Etapas do protocolo">
+        <div class="stepCard hoverlift">
+          <div class="stepTop">
+            <div class="stepNum">1</div>
+            <h3>INTENÇÃO</h3>
+          </div>
+          <p>Campanhas para capturar demanda com intenção real (Google/Maps) e reforço de autoridade no Meta.</p>
+          <div class="stepChecks">
+            <span><i>✓</i>Busca ativa e tráfego qualificado.</span>
+            <span><i>✓</i>Foco por serviço/procedimento.</span>
             <span><i>✓</i>Mensuração desde o início.</span>
           </div>
         </div>
 
-        <div class="step hoverlift">
-          <div class="badge">2</div>
-          <h3>ETAPA 2 — QUALIFICAÇÃO</h3>
-          <p>Mensagens, perguntas e follow-up para filtrar curiosos e acelerar agendamento com quem tem perfil.</p>
-          <div class="miniChecks" aria-label="Checks da etapa 2">
-            <span><i>✓</i>3 perguntas no WhatsApp.</span>
-            <span><i>✓</i>Script para recepção.</span>
-            <span><i>✓</i>Rotina de acompanhamento.</span>
+        <div class="stepCard hoverlift">
+          <div class="stepTop">
+            <div class="stepNum">2</div>
+            <h3>QUALIFICAÇÃO</h3>
+          </div>
+          <p>Script + perguntas + follow-up para filtrar curiosos e acelerar agendamentos com perfil.</p>
+          <div class="stepChecks">
+            <span><i>✓</i>Roteiro de atendimento.</span>
+            <span><i>✓</i>Rotina de follow-up.</span>
+            <span><i>✓</i>Menos “tira-dúvidas”, mais agenda.</span>
           </div>
         </div>
 
-        <div class="step hoverlift">
-          <div class="badge">3</div>
-          <h3>ETAPA 3 — MÉTRICAS</h3>
-          <p>Otimização semanal com dados: custo por lead, custo por agendamento e ajustes de funil.</p>
-          <div class="miniChecks" aria-label="Checks da etapa 3">
-            <span><i>✓</i>Rotina de otimização.</span>
-            <span><i>✓</i>Decisão por dados.</span>
-            <span><i>✓</i>Previsibilidade por processo.</span>
+        <div class="stepCard hoverlift">
+          <div class="stepTop">
+            <div class="stepNum">3</div>
+            <h3>MÉTRICAS</h3>
+          </div>
+          <p>Otimização semanal com dados do funil para baixar custo e aumentar agendamentos.</p>
+          <div class="stepChecks">
+            <span><i>✓</i>Custo por lead e por agendamento.</span>
+            <span><i>✓</i>Taxa de resposta/comparecimento.</span>
+            <span><i>✓</i>Decisão por dados, não “achismo”.</span>
           </div>
         </div>
       </div>
@@ -1224,7 +1221,7 @@
             <div class="workBadge">1</div>
             <h3>Semana 1 — Diagnóstico</h3>
           </div>
-          <p>Levantamento de praça, concorrência, procedimentos âncora e estrutura de atendimento.</p>
+          <p>Levantamento de praça, concorrência, serviços âncora e estrutura de atendimento.</p>
         </div>
 
         <div class="workCard hoverlift">
@@ -1249,7 +1246,7 @@
         <a class="btn btn-gold"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer">
-          Verificar exclusividade na minha cidade →
+          Verificar disponibilidade na minha cidade →
         </a>
       </div>
     </div>
@@ -1262,7 +1259,7 @@
         <h2 style="color:#fff;">Por que trabalho com exclusividade de praça</h2>
         <p class="lead" style="margin:12px auto 0; color: rgba(255,255,255,.92);">
           Como a operação depende de dominar a sua <strong>praça de captação</strong> (onde seus anúncios vão rodar e disputar atenção),
-          eu não atendo dois parceiros concorrentes no mesmo procedimento dentro da mesma microrregião/cidade.
+          eu não atendo dois parceiros concorrentes no mesmo serviço/prioridade dentro da mesma microrregião/cidade.
           A área exata de exclusividade é definida no diagnóstico, com base em demanda e concorrência.
         </p>
       </div>
@@ -1272,7 +1269,7 @@
         <a class="btn btn-outline"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer">
-          Verificar exclusividade agora →
+          Verificar disponibilidade agora →
         </a>
       </div>
     </div>
@@ -1334,22 +1331,19 @@
             <div>
               <h3>Certificações</h3>
               <p style="color: rgba(0,0,0,.70);">Processo e linguagem de plataforma para reduzir improviso e aumentar consistência de execução.</p>
-              <div class="logos" aria-label="Logos">
+
+              <div class="logos" aria-label="Plataformas">
                 <div class="logoPill" aria-label="Meta Ads">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Meta (placeholder)">
-                    <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm-1.2 6.4c-1.6 0-2.8 1.32-2.8 3.1 0 2.2 1.5 5.2 3.2 5.2 1 0 1.7-1.2 2.2-2.3.5 1.1 1.2 2.3 2.2 2.3 1.7 0 3.2-3 3.2-5.2 0-1.78-1.2-3.1-2.8-3.1-1.1 0-2 .7-2.6 1.7-.6-1-1.5-1.7-2.6-1.7z"/>
-                  </svg>
-                  <span>Meta Ads (Pedro Sobral)</span>
+                  <span class="platDot meta" aria-hidden="true">M</span>
+                  <span>Meta Ads</span>
                 </div>
                 <div class="logoPill" aria-label="Google Ads">
-                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Google Ads (placeholder)">
-                    <path d="M7.5 3.2c1.1-.6 2.5-.2 3.1.9l7.7 13.4c.6 1.1.2 2.5-.9 3.1-1.1.6-2.5.2-3.1-.9L6.6 6.3c-.6-1.1-.2-2.5.9-3.1z"/>
-                    <path d="M5.2 7.6c1.2 0 2.2 1 2.2 2.2v9.3c0 1.2-1 2.2-2.2 2.2S3 20.3 3 19.1V9.8c0-1.2 1-2.2 2.2-2.2z"/>
-                  </svg>
-                  <span>Google Ads (Subido)</span>
+                  <span class="platDot google" aria-hidden="true">G</span>
+                  <span>Google Ads</span>
                 </div>
               </div>
-              <p class="micro" style="margin-top:10px;">Se você preferir, troque os placeholders pelos logos oficiais.</p>
+
+              <p class="micro" style="margin-top:10px;">Se você preferir, depois dá pra trocar por logos oficiais.</p>
             </div>
           </div>
         </div>
@@ -1360,7 +1354,7 @@
             <div>
               <h3>Máximo 8 clínicas simultâneas</h3>
               <p style="color: rgba(0,0,0,.70);">Operação enxuta e sob medida para manter padrão de execução e leitura de dados com profundidade.</p>
-              <p class="micro" style="margin-top:10px;">Isso também reforça exclusividade e reduz conflito de interesse.</p>
+              <p class="micro" style="margin-top:10px;">Isso reforça exclusividade e reduz conflito de interesse.</p>
             </div>
           </div>
         </div>
@@ -1382,7 +1376,7 @@
         <a class="btn btn-gold"
            href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
            target="_blank" rel="noopener noreferrer">
-          Verificar exclusividade na minha cidade →
+          Verificar disponibilidade na minha cidade →
         </a>
       </div>
     </div>
@@ -1403,7 +1397,7 @@
             <span class="faqIcon" aria-hidden="true">+</span>
           </summary>
           <div class="faqBody">
-            O investimento do meu trabalho é apresentado na reunião, porque varia por praça, volume e complexidade (procedimento principal, concorrência e estrutura de atendimento).
+            O investimento do meu trabalho é apresentado na reunião, porque varia por praça, volume e complexidade (serviço principal, concorrência e estrutura de atendimento).
             O que não muda é o protocolo de implantação e o acompanhamento por métricas (CAC e custo por agendamento).
           </div>
         </details>
@@ -1434,7 +1428,7 @@
             <span class="faqIcon" aria-hidden="true">+</span>
           </summary>
           <div class="faqBody">
-            Eu atendo apenas um parceiro por praça para o procedimento principal. Se a sua praça já tiver parceiro ativo, eu não abro exceção.
+            Eu atendo apenas um parceiro por praça para o serviço/prioridade principal. Se a sua praça já tiver parceiro ativo, eu não abro exceção.
           </div>
         </details>
       </div>
@@ -1464,7 +1458,7 @@
           <a class="btn btn-gold pulse"
              href="https://wa.me/5548999291215?text=Ol%C3%A1%20Rodrigo%2C%20quero%20verificar%20a%20disponibilidade%20para%20minha%20cidade."
              target="_blank" rel="noopener noreferrer" style="max-width:640px;">
-            Verificar exclusividade na minha cidade →
+            Verificar disponibilidade na minha cidade →
           </a>
           <div class="spacer12"></div>
           <p class="micro" style="color: rgba(255,255,255,.78);">
@@ -1504,7 +1498,7 @@
           <div class="footTitle">Rodrigo Rocha • Gestor Estratégico de Aquisição</div>
           <div class="spacer12"></div>
           <div>
-            Implante Capilar • Lipo HD • Facetas • Cirurgia Plástica • Odonto Estética • Dermatologia • Biomedicina Estética
+            Clínicas premium • Estética • Odonto estética • Dermatologia • Cirurgia • Procedimentos de demanda local
           </div>
           <div class="spacer12"></div>
           <div>SC | Criciúma</div>
@@ -1514,22 +1508,17 @@
           <div class="footTitle">Certificações</div>
           <div class="badges" aria-label="Badges">
             <div class="badge" aria-label="Meta Ads">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone Meta (placeholder)">
-                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm-1.2 6.4c-1.6 0-2.8 1.32-2.8 3.1 0 2.2 1.5 5.2 3.2 5.2 1 0 1.7-1.2 2.2-2.3.5 1.1 1.2 2.3 2.2 2.3 1.7 0 3.2-3 3.2-5.2 0-1.78-1.2-3.1-2.8-3.1-1.1 0-2 .7-2.6 1.7-.6-1-1.5-1.7-2.6-1.7z"/>
-              </svg>
-              <span>Meta Ads (Pedro Sobral)</span>
+              <span class="platDot meta" aria-hidden="true">M</span>
+              <span>Meta Ads</span>
             </div>
 
             <div class="badge" aria-label="Google Ads">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone Google Ads (placeholder)">
-                <path d="M7.5 3.2c1.1-.6 2.5-.2 3.1.9l7.7 13.4c.6 1.1.2 2.5-.9 3.1-1.1.6-2.5.2-3.1-.9L6.6 6.3c-.6-1.1-.2-2.5.9-3.1z"/>
-                <path d="M5.2 7.6c1.2 0 2.2 1 2.2 2.2v9.3c0 1.2-1 2.2-2.2 2.2S3 20.3 3 19.1V9.8c0-1.2 1-2.2 2.2-2.2z"/>
-              </svg>
-              <span>Google Ads (Subido)</span>
+              <span class="platDot google" aria-hidden="true">G</span>
+              <span>Google Ads</span>
             </div>
           </div>
           <div class="spacer12"></div>
-          <div class="micro">Observação: substitua os placeholders pelos logos oficiais, se desejar.</div>
+          <div class="micro">Observação: se quiser, depois você substitui pelos logos oficiais.</div>
         </div>
       </div>
     </div>
