@@ -43,11 +43,12 @@
       --muted2:#8a93a1;
 
       --gold:#B8860B;
+      --gold2:#8e6a10;
       --blue:#4A90E2;
 
       --white:#ffffff;
       --soft:#f5f5f5;
-      --glass: rgba(255,255,255,.78);
+      --glass: rgba(255,255,255,.80);
 
       --border: rgba(255,255,255,.16);
       --borderDark: rgba(0,0,0,.10);
@@ -108,7 +109,7 @@
     }
     p{ margin:0; font-size: 16px; }
     .lead{ font-size: 17px; max-width: 72ch; }
-    .micro{ font-size: 13px; opacity: .9; }
+    .micro{ font-size: 13px; opacity: .92; }
     .subtle{ color: rgba(255,255,255,.78); }
 
     /* Sections */
@@ -119,11 +120,12 @@
     .bg-gold{
       color:#fff;
       background: radial-gradient(1200px 420px at 20% 20%, rgba(255,255,255,.14), transparent 55%),
-                  linear-gradient(135deg, #B8860B, #8e6a10);
+                  linear-gradient(135deg, var(--gold), var(--gold2));
     }
 
     /* Utilities */
     .center{ text-align:center; }
+    .spacer10{ height: 10px; }
     .spacer12{ height: 12px; }
     .spacer18{ height: 18px; }
     .spacer24{ height: 24px; }
@@ -145,6 +147,8 @@
       transition: transform .16s ease, box-shadow .16s ease, filter .16s ease;
       will-change: transform;
       cursor: pointer;
+      text-align: center;
+      white-space: normal;
     }
     .btn-gold{
       background: var(--gold);
@@ -176,6 +180,7 @@
       border-radius: var(--radius);
       box-shadow: var(--shadowSoft);
       padding: 18px;
+      min-width: 0; /* prevents grid overflow */
     }
     .card.soft{
       background: var(--soft);
@@ -194,7 +199,7 @@
     /* HERO */
     .hero{
       position: relative;
-      padding: 26px 0 72px;
+      padding: 22px 0 72px;
       overflow: hidden;
       background:
         radial-gradient(900px 450px at 18% 22%, rgba(74,144,226,.24), transparent 55%),
@@ -202,7 +207,6 @@
         linear-gradient(135deg, var(--navy), var(--navy2));
       color:#fff;
     }
-
     .hero::before{
       content:"";
       position:absolute;
@@ -216,11 +220,7 @@
       pointer-events:none;
       transform: scale(1.02);
     }
-
-    .hero > .container{
-      position: relative;
-      z-index: 1;
-    }
+    .hero > .container{ position: relative; z-index: 1; }
 
     .topline{
       display:flex;
@@ -253,9 +253,7 @@
       overflow:hidden;
       text-overflow: ellipsis;
     }
-    .topCta{
-      display:none;
-    }
+    .topCta{ display:none; }
 
     .heroGrid{
       display:grid;
@@ -263,7 +261,7 @@
       gap: 18px;
       align-items: start;
     }
-
+    .heroText{ min-width: 0; }
     .kicker{
       display:inline-flex;
       align-items:center;
@@ -287,18 +285,16 @@
       box-shadow: 0 0 0 5px rgba(184,134,11,.18);
       flex: 0 0 auto;
     }
-
     .heroText .lead{
       color: rgba(255,255,255,.78);
       max-width: 74ch;
     }
-
     .heroActions{
       display:flex;
       flex-direction: column;
       gap: 10px;
       margin-top: 18px;
-      max-width: 560px;
+      max-width: 620px;
     }
     .metaRow{
       display:flex;
@@ -331,11 +327,11 @@
       padding: 18px;
       backdrop-filter: blur(14px);
       color: rgba(0,0,0,.78);
+      min-width: 0;
+      overflow: hidden;
     }
-    .floatCard h3{
-      color: var(--ink);
-      margin-bottom: 6px;
-    }
+    .floatCard h3{ color: var(--ink); margin-bottom: 6px; }
+    .floatCard p{ color: rgba(0,0,0,.70); }
     .floatList{
       margin: 12px 0 0;
       padding: 0;
@@ -349,7 +345,9 @@
       align-items:flex-start;
       font-size: 14px;
       color: rgba(0,0,0,.70);
+      min-width: 0;
     }
+    .floatItem span{ min-width:0; overflow-wrap:anywhere; }
     .icoMini{
       width: 26px; height: 26px;
       border-radius: 10px;
@@ -419,7 +417,7 @@
     .metric .big{
       font-family: Montserrat, sans-serif;
       font-weight: 900;
-      font-size: 34px;
+      font-size: clamp(40px, 9vw, 44px);
       letter-spacing: -0.02em;
       color: var(--gold);
       line-height: 1;
@@ -437,6 +435,7 @@
       padding: 18px;
       overflow:hidden;
       position: relative;
+      min-width: 0;
     }
     .warnIconBox::before{
       content:"";
@@ -532,6 +531,7 @@
       padding-top: 16px;
       padding-right: 16px;
       padding-bottom: 16px;
+      min-width: 0;
     }
     .step .badge{
       position:absolute;
@@ -563,13 +563,52 @@
       display:flex;
       gap: 8px;
       align-items:flex-start;
+      min-width: 0;
     }
     .step .miniChecks i{
       font-style: normal;
       color: var(--blue);
       font-weight: 900;
       margin-top: 1px;
+      flex: 0 0 auto;
     }
+
+    /* Work with me (new) */
+    .workGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .workCard{
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 46px rgba(0,0,0,.22);
+      padding: 16px;
+      min-width: 0;
+    }
+    .workTop{
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      margin-bottom: 8px;
+    }
+    .workBadge{
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      display:grid;
+      place-items:center;
+      background: rgba(74,144,226,.10);
+      border: 1px solid rgba(74,144,226,.20);
+      color: var(--blue);
+      font-family: Montserrat, sans-serif;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+    .workCard h3{ color:#fff; margin:0; }
+    .workCard p{ color: rgba(255,255,255,.80); }
 
     /* Exclusivity gold section */
     .locRow{
@@ -577,6 +616,7 @@
       gap: 12px;
       align-items:flex-start;
       margin-top: 14px;
+      flex-direction: column;
     }
     .locIcon{
       width: 46px; height: 46px;
@@ -612,6 +652,7 @@
       background:#fff;
       border: 1px solid rgba(0,0,0,.10);
       box-shadow: var(--shadowSoft);
+      min-width: 0;
     }
     .fitCard.green{ border-left: 6px solid #2ecc71; }
     .fitCard.red{ border-left: 6px solid rgba(231,76,60,.95); }
@@ -629,7 +670,9 @@
       display:flex;
       gap: 10px;
       align-items:flex-start;
+      min-width: 0;
     }
+    .bullets li span:last-child{ overflow-wrap:anywhere; }
     .bullets .bico{
       width: 22px;
       height: 22px;
@@ -643,6 +686,96 @@
     }
     .bullets .ok{ background: rgba(46,204,113,.12); border: 1px solid rgba(46,204,113,.22); color: #2ecc71; }
     .bullets .no{ background: rgba(231,76,60,.12); border: 1px solid rgba(231,76,60,.22); color: rgba(231,76,60,.95); }
+
+    /* Differentials (new) */
+    .diffGrid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .diffItem{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      min-width: 0;
+    }
+    .diffIcon{
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      display:grid;
+      place-items:center;
+      background: rgba(184,134,11,.12);
+      border: 1px solid rgba(184,134,11,.22);
+      color: var(--gold);
+      flex: 0 0 auto;
+    }
+    .logos{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .logoPill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: var(--soft);
+      border: 1px solid rgba(0,0,0,.08);
+      color: rgba(0,0,0,.75);
+    }
+    .logoPill svg{ width: 22px; height: 22px; fill: rgba(0,0,0,.82); }
+
+    /* FAQ (new) */
+    .faq{
+      margin-top: 18px;
+      display:grid;
+      gap: 10px;
+    }
+    details{
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadowSoft);
+      overflow:hidden;
+    }
+    summary{
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 16px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 900;
+      color: var(--ink);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .faqIcon{
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      background: rgba(74,144,226,.10);
+      border: 1px solid rgba(74,144,226,.18);
+      color: var(--blue);
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+    .faqBody{
+      padding: 0 16px 16px;
+      color: rgba(0,0,0,.70);
+      font-size: 15px;
+    }
+    details[open] summary{
+      background: linear-gradient(180deg, rgba(184,134,11,.10), transparent);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
 
     /* Final CTA */
     .finalBox{
@@ -665,14 +798,51 @@
     }
     .finalBox *{ position: relative; z-index: 1; }
 
-    .pulse{
-      animation: pulse 1.8s ease-in-out infinite;
-    }
+    .pulse{ animation: pulse 1.8s ease-in-out infinite; }
     @keyframes pulse{
       0%{ transform: scale(1); box-shadow: 0 16px 34px rgba(184,134,11,.30); }
       50%{ transform: scale(1.02); box-shadow: 0 22px 48px rgba(184,134,11,.40); }
       100%{ transform: scale(1); box-shadow: 0 16px 34px rgba(184,134,11,.30); }
     }
+
+    /* Last chance banner (new) */
+    .lastChance{
+      padding: 26px 0;
+      background:
+        radial-gradient(700px 260px at 25% 20%, rgba(184,134,11,.16), transparent 60%),
+        linear-gradient(180deg, rgba(184,134,11,.10), rgba(184,134,11,.06));
+      border-top: 1px solid rgba(0,0,0,.06);
+    }
+    .lastBox{
+      background: #fff;
+      border: 1px solid rgba(184,134,11,.22);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadowSoft);
+      display:grid;
+      gap: 12px;
+      align-items:center;
+    }
+    .lastRow{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .lastIco{
+      width: 44px;
+      height: 44px;
+      border-radius: 18px;
+      display:grid;
+      place-items:center;
+      background: rgba(184,134,11,.12);
+      border: 1px solid rgba(184,134,11,.22);
+      color: var(--gold);
+      flex: 0 0 auto;
+      font-family: Montserrat, sans-serif;
+      font-weight: 900;
+    }
+    .lastText h3{ margin:0 0 4px 0; }
+    .lastText p{ color: rgba(0,0,0,.70); }
 
     /* Footer */
     footer{
@@ -724,7 +894,15 @@
       }
     }
 
-    /* Responsive */
+    /* Mobile improvements */
+    @media (max-width: 520px){
+      .btn{ width: 100%; }
+      .heroActions{ max-width: 100%; }
+      .metric .big{ font-size: 52px; } /* bigger numbers on mobile */
+      .kicker{ letter-spacing: .09em; }
+    }
+
+    /* Desktop */
     @media (min-width: 900px){
       .topCta{ display:inline-flex; width: auto; padding: 12px 14px; }
       .btn{ width: auto; }
@@ -733,8 +911,12 @@
       .twoCol{ grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: start; }
       .marketGrid{ grid-template-columns: repeat(3, 1fr); }
       .grid3{ grid-template-columns: repeat(3, 1fr); }
+      .workGrid{ grid-template-columns: repeat(3, 1fr); }
       .fitGrid{ grid-template-columns: repeat(2, 1fr); }
+      .diffGrid{ grid-template-columns: repeat(3, 1fr); }
       .footGrid{ grid-template-columns: 1.2fr .8fr; align-items: end; }
+      .locRow{ flex-direction: row; }
+      .lastBox{ grid-template-columns: 1fr auto; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -756,8 +938,8 @@
           <div class="role">Gestor de Tráfego • Estética Alto Ticket</div>
         </div>
 
-        <a class="btn btn-outline topCta" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20solicitar%20uma%20an%C3%A1lise%20da%20minha%20cl%C3%ADnica%20para%20implantar%20um%20sistema%20previs%C3%ADvel%20de%20pacientes%20particulares." target="_blank" rel="noopener noreferrer" aria-label="Solicitar análise no WhatsApp">
-          WhatsApp • Solicitar análise →
+        <a class="btn btn-outline topCta" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20para%20implantar%20um%20sistema%20previs%C3%ADvel%20de%20pacientes%20particulares." target="_blank" rel="noopener noreferrer" aria-label="Quero meu diagnóstico gratuito no WhatsApp">
+          WhatsApp • Quero meu diagnóstico gratuito →
         </a>
       </div>
 
@@ -784,8 +966,8 @@
           </div>
 
           <div class="heroActions">
-            <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20solicitar%20uma%20an%C3%A1lise%20da%20minha%20cl%C3%ADnica%20para%20implantar%20um%20sistema%20previs%C3%ADvel%20de%20pacientes%20particulares." target="_blank" rel="noopener noreferrer">
-              WhatsApp • SOLICITAR ANÁLISE DA MINHA CLÍNICA →
+            <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20da%20minha%20cl%C3%ADnica%20para%20pacientes%20particulares%20(alto%20ticket)." target="_blank" rel="noopener noreferrer">
+              WhatsApp • Quero meu diagnóstico gratuito →
             </a>
 
             <div class="metaRow micro">
@@ -798,7 +980,7 @@
 
         <aside class="floatCard reveal" aria-label="Card flutuante">
           <h3>Rodrigo Rocha</h3>
-          <p style="color:rgba(0,0,0,.70);">
+          <p>
             Gestor de Tráfego. Protocolo sob medida para dominar buscas locais no Google e capturar demanda com intenção real (sem “métricas de vaidade”).
           </p>
 
@@ -814,8 +996,8 @@
           </div>
 
           <div class="spacer12"></div>
-          <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20checar%20a%20disponibilidade%20da%20minha%20regi%C3%A3o%20para%20exclusividade%20e%20entender%20o%20protocolo." target="_blank" rel="noopener noreferrer">
-            Checar disponibilidade da região →
+          <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20garantir%20minha%20exclusividade%20agora%20e%20checar%20a%20disponibilidade%20da%20minha%20regi%C3%A3o." target="_blank" rel="noopener noreferrer">
+            Garantir minha exclusividade agora →
           </a>
         </aside>
       </div>
@@ -884,8 +1066,8 @@
 
       <div class="spacer18"></div>
       <div class="center">
-        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20solicitar%20uma%20an%C3%A1lise%20da%20minha%20cl%C3%ADnica%20(alto%20ticket)%20para%20pacientes%20particulares." target="_blank" rel="noopener noreferrer">
-          WhatsApp • Solicitar análise →
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20para%20pacientes%20particulares%20(alto%20ticket)." target="_blank" rel="noopener noreferrer">
+          WhatsApp • Quero meu diagnóstico gratuito →
         </a>
       </div>
     </div>
@@ -916,7 +1098,7 @@
         <div class="marketGrid" aria-label="Dados em destaque">
           <div class="metric hoverlift">
             <div class="big">38%</div>
-            <div class="label">Queda de alcance orgânico (o “gratis” não sustenta previsibilidade).</div>
+            <div class="label">Queda de alcance orgânico (o “grátis” não sustenta previsibilidade).</div>
           </div>
           <div class="metric hoverlift">
             <div class="big">R$ 100–300</div>
@@ -939,7 +1121,6 @@
           Se você não aparece no momento de intenção, você perde para quem aparece — mesmo sendo menos qualificado.
         </p>
 
-        <!-- Inline SVG: alert + rising chart (lightweight, no external libs) -->
         <svg class="warnSvg" viewBox="0 0 640 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ícone de alerta com gráfico de crescimento">
           <defs>
             <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
@@ -971,8 +1152,8 @@
         </svg>
 
         <div class="spacer12"></div>
-        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20um%20diagn%C3%B3stico%20do%20meu%20posicionamento%20no%20Google%20e%20um%20plano%20de%20aquisi%C3%A7%C3%A3o%20previs%C3%ADvel%20para%20pacientes%20particulares." target="_blank" rel="noopener noreferrer">
-          WhatsApp • Quero diagnóstico →
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20do%20meu%20posicionamento%20no%20Google%20e%20um%20plano%20previs%C3%ADvel%20para%20pacientes%20particulares." target="_blank" rel="noopener noreferrer">
+          WhatsApp • Quero meu diagnóstico gratuito →
         </a>
       </aside>
     </div>
@@ -1095,8 +1276,62 @@
 
       <div class="spacer18"></div>
       <div class="center">
-        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20entender%20o%20protocolo%20CQV%20e%20como%20voc%C3%AA%20acompanha%20CAC%20e%20custo%20por%20agendamento." target="_blank" rel="noopener noreferrer">
-          WhatsApp • Entender o método →
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20ver%20o%20passo%20a%20passo%20do%20protocolo%20(CQV)%20e%20como%20voc%C3%AA%20acompanha%20CAC%20e%20custo%20por%20agendamento." target="_blank" rel="noopener noreferrer">
+          Ver o passo a passo do protocolo →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO É TRABALHAR COMIGO (NEW) -->
+  <section class="bg-navy" id="como-trabalhar">
+    <div class="container reveal">
+      <div class="center">
+        <h2 style="color:#fff;">Como é trabalhar comigo</h2>
+        <p class="lead" style="margin:12px auto 0; color: rgba(255,255,255,.78);">
+          Processo curto, objetivo e mensurável. Você sabe exatamente o que acontece, em qual semana e quais indicadores vamos ler.
+        </p>
+      </div>
+
+      <div class="workGrid" aria-label="Cronograma">
+        <div class="workCard hoverlift">
+          <div class="workTop">
+            <div class="workBadge">1</div>
+            <h3>Semana 1 — Diagnóstico</h3>
+          </div>
+          <p>
+            Diagnóstico do cenário: praça, demanda, concorrência, estrutura de atendimento, gargalos e metas.
+            Aqui eu defino o protocolo e o caminho para previsibilidade.
+          </p>
+        </div>
+
+        <div class="workCard hoverlift">
+          <div class="workTop">
+            <div class="workBadge">2–3</div>
+            <h3>Semana 2–3 — Implementação</h3>
+          </div>
+          <p>
+            Implemento campanhas, rastreamento, páginas/rotas e processo de qualificação.
+            Tudo para transformar intenção em agendamento com padrão.
+          </p>
+        </div>
+
+        <div class="workCard hoverlift">
+          <div class="workTop">
+            <div class="workBadge">4+</div>
+            <h3>Semana 4+ — Otimização</h3>
+          </div>
+          <p>
+            Otimizações semanais com dados: CAC por especialidade, custo por agendamento, comparecimento e ajustes de funil.
+            O objetivo é consistência e previsibilidade.
+          </p>
+        </div>
+      </div>
+
+      <div class="spacer18"></div>
+      <div class="center">
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20ver%20o%20passo%20a%20passo%20do%20protocolo%20e%20entender%20o%20cronograma%20(semana%201%2C%202-3%2C%204%2B)." target="_blank" rel="noopener noreferrer">
+          Ver o passo a passo do protocolo →
         </a>
       </div>
     </div>
@@ -1132,8 +1367,8 @@
           </div>
 
           <div class="spacer12"></div>
-          <a class="btn btn-outline" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20checar%20se%20minha%20regi%C3%A3o%20ainda%20est%C3%A1%20dispon%C3%ADvel%20para%20exclusividade." target="_blank" rel="noopener noreferrer">
-            Checar disponibilidade agora →
+          <a class="btn btn-outline" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20garantir%20minha%20exclusividade%20agora%20e%20checar%20se%20minha%20regi%C3%A3o%20ainda%20est%C3%A1%20dispon%C3%ADvel." target="_blank" rel="noopener noreferrer">
+            Garantir minha exclusividade agora →
           </a>
         </div>
       </div>
@@ -1180,6 +1415,142 @@
     </div>
   </section>
 
+  <!-- O QUE DIFERENCIA (NEW) -->
+  <section class="bg-soft" id="diferenciais">
+    <div class="container reveal">
+      <div class="center">
+        <h2>O que diferencia</h2>
+        <p class="lead" style="margin:12px auto 0; color: var(--muted);">
+          Consultoria premium com execução e disciplina de dados: menos volume, mais controle e previsibilidade.
+        </p>
+      </div>
+
+      <div class="diffGrid" aria-label="Diferenciais">
+        <div class="card hoverlift">
+          <div class="diffItem">
+            <div class="diffIcon" aria-hidden="true">🏅</div>
+            <div>
+              <h3>Certificações</h3>
+              <p style="color: rgba(0,0,0,.70);">
+                Processo e linguagem de plataforma para reduzir improviso e aumentar consistência de execução.
+              </p>
+              <div class="logos" aria-label="Logos">
+                <div class="logoPill" aria-label="Meta Blueprint">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Meta (placeholder)">
+                    <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm-1.2 6.4c-1.6 0-2.8 1.32-2.8 3.1 0 2.2 1.5 5.2 3.2 5.2 1 0 1.7-1.2 2.2-2.3.5 1.1 1.2 2.3 2.2 2.3 1.7 0 3.2-3 3.2-5.2 0-1.78-1.2-3.1-2.8-3.1-1.1 0-2 .7-2.6 1.7-.6-1-1.5-1.7-2.6-1.7z"/>
+                  </svg>
+                  <span>Meta Blueprint</span>
+                </div>
+                <div class="logoPill" aria-label="Google Ads">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo Google Ads (placeholder)">
+                    <path d="M7.5 3.2c1.1-.6 2.5-.2 3.1.9l7.7 13.4c.6 1.1.2 2.5-.9 3.1-1.1.6-2.5.2-3.1-.9L6.6 6.3c-.6-1.1-.2-2.5.9-3.1z"/>
+                    <path d="M5.2 7.6c1.2 0 2.2 1 2.2 2.2v9.3c0 1.2-1 2.2-2.2 2.2S3 20.3 3 19.1V9.8c0-1.2 1-2.2 2.2-2.2z"/>
+                  </svg>
+                  <span>Google Ads</span>
+                </div>
+              </div>
+              <p class="micro" style="margin-top:10px;">Se você preferir, troque os placeholders pelos logos oficiais.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hoverlift">
+          <div class="diffItem">
+            <div class="diffIcon" aria-hidden="true">🔒</div>
+            <div>
+              <h3>Máximo 8 clínicas simultâneas</h3>
+              <p style="color: rgba(0,0,0,.70);">
+                Operação enxuta e sob medida para manter padrão de execução e leitura de dados com profundidade.
+              </p>
+              <p class="micro" style="margin-top:10px;">Isso também reforça a exclusividade e reduz conflito de interesse.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card hoverlift">
+          <div class="diffItem">
+            <div class="diffIcon" aria-hidden="true">📊</div>
+            <div>
+              <h3>Acompanhamento semanal com dados</h3>
+              <p style="color: rgba(0,0,0,.70);">
+                Rotina de otimização baseada em CAC por especialidade, custo por agendamento, comparecimento e ajustes do funil.
+              </p>
+              <p class="micro" style="margin-top:10px;">Previsibilidade vem de processo, não de “esperança”.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="spacer18"></div>
+      <div class="center">
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20e%20entender%20como%20funciona%20o%20acompanhamento%20semanal%20com%20dados." target="_blank" rel="noopener noreferrer">
+          WhatsApp • Quero meu diagnóstico gratuito →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ (NEW) -->
+  <section class="bg-white" id="faq">
+    <div class="container reveal">
+      <div class="center">
+        <h2>FAQ</h2>
+        <p class="lead" style="margin:12px auto 0; color: var(--muted);">
+          Respostas diretas, sem “marketing de palco”.
+        </p>
+      </div>
+
+      <div class="faq" aria-label="Perguntas frequentes">
+        <details>
+          <summary>
+            <span>Investimento mínimo em mídia?</span>
+            <span class="faqIcon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faqBody">
+            Depende da sua praça, ticket e do volume que você quer sustentar com particular. No diagnóstico gratuito eu te digo uma faixa realista para competir com intenção (pesquisa) sem dispersão.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>Quanto tempo até ver resultado?</span>
+            <span class="faqIcon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faqBody">
+            Existe curva de aprendizado e ajustes. O objetivo é construir previsibilidade: primeiro estabilizamos o fluxo de contatos/agendamentos e, depois, otimizamos CAC e custo por agendamento com dados semanais.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>E se eu já tenho agência?</span>
+            <span class="faqIcon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faqBody">
+            Normal. O diagnóstico mostra se o problema é estratégia, execução, rastreamento, qualificação ou atendimento. Se fizer sentido, assumo a operação com protocolo de resposta direta (agenda e cadeira), sem métricas de vaidade.
+          </div>
+        </details>
+
+        <details>
+          <summary>
+            <span>Como funciona exclusividade?</span>
+            <span class="faqIcon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faqBody">
+            Eu atendo apenas uma clínica por região para não competir comigo mesmo no leilão e não encarecer seu custo. Se sua região já tiver parceiro ativo, eu não abro exceção.
+          </div>
+        </details>
+      </div>
+
+      <div class="spacer18"></div>
+      <div class="center">
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20garantir%20minha%20exclusividade%20agora%20e%20tirar%20duas%20d%C3%BAvidas%20no%20WhatsApp." target="_blank" rel="noopener noreferrer">
+          Garantir minha exclusividade agora →
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA FINAL -->
   <section class="bg-navy" id="contato">
     <div class="container reveal">
@@ -1192,14 +1563,33 @@
 
         <div class="spacer18"></div>
         <div class="center">
-          <a class="btn btn-gold pulse" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Tenho%20interesse%20na%20exclusividade%20da%20minha%20regi%C3%A3o%20e%20quero%20entender%20o%20protocolo%20(CQV)%20com%20m%C3%A9tricas%20de%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer" style="max-width:560px;">
-            WhatsApp • SOLICITAR ANÁLISE DA MINHA CLÍNICA →
+          <a class="btn btn-gold pulse" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20meu%20diagn%C3%B3stico%20gratuito%20e%20quero%20entender%20como%20garantir%20a%20exclusividade%20da%20minha%20regi%C3%A3o." target="_blank" rel="noopener noreferrer" style="max-width:640px;">
+            WhatsApp • Quero meu diagnóstico gratuito →
           </a>
           <div class="spacer12"></div>
           <p class="micro" style="color: rgba(255,255,255,.78);">
             Link direto: <a href="https://wa.me/5548999291215" target="_blank" rel="noopener noreferrer" style="color:#fff; text-decoration: underline; text-underline-offset: 3px;">wa.me/5548999291215</a>
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER ÚLTIMA CHANCE (NEW) -->
+  <section class="lastChance" aria-label="Última chance">
+    <div class="container reveal">
+      <div class="lastBox">
+        <div class="lastRow">
+          <div class="lastIco" aria-hidden="true">⚠️</div>
+          <div class="lastText">
+            <h3>Última chance</h3>
+            <p>Se sua região já tiver parceiro ativo, não posso abrir exceção.</p>
+          </div>
+        </div>
+
+        <a class="btn btn-gold" href="https://wa.me/5548999291215?text=Ol%C3%A1%2C%20Rodrigo.%20Quero%20verificar%20minha%20regi%C3%A3o%20agora%20para%20exclusividade." target="_blank" rel="noopener noreferrer" style="max-width: 520px;">
+          Verificar minha região agora →
+        </a>
       </div>
     </div>
   </section>
